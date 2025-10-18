@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Select2Icon Demo</title>
+
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Font Awesome 6.6.0 CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Select2Icon CSS -->
+    <link rel="stylesheet" href="./../src/select2icon.css" />
+
+    <!-- Select2Icon JS -->
+    <script src="./../src/select2icon.js"></script>
+</head>
+<body class="bg-light">
+
+<div class="container py-5">
+    <h1 class="mb-4">🎨 Select2Icon Demo</h1>
+
+    <div class="row g-4">
+        <!-- Input Mode -->
+        <div class="col-md-6">
+            <h5>Input Mode</h5>
+            <input id="icon-picker-input" type="text" class="form-control" placeholder="Select an icon..." value="fa fa-user" />
+        </div>
+
+        <!-- Dropdown Mode -->
+        <div class="col-md-6">
+            <h5>Dropdown Mode</h5>
+            <button id="icon-picker-dropdown" class="btn btn-primary">Choose Icon</button>
+        </div>
+    </div>
+
+    <hr class="my-5" />
+    <div class="row g-4">
+
+        <!-- Inline Mode -->
+        <div class="col">
+            <h5>Dropdown Mode</h5>
+            <div id="icon-picker-inline"></div>
+
+        </div>
+
+        <!-- Selected Output -->
+        <div class="row">
+            <div class="col">
+                <h5>Selected Icon:</h5>
+                <div id="selected-output" class="fs-4 text-primary"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Demo Initialization -->
+<script>
+    // Optional global language override
+    window.Select2IconLang = 'en';
+
+    // Sample icon data (can be loaded from icons.json)
+    const sampleIcons = {
+        "fa fa-home": {
+            label: "Home",
+            class: "fa fa-home",
+            category: "Navigation"
+        },
+        "fa fa-search": {
+            label: "Search",
+            class: "fa fa-search",
+            category: "Utility"
+        },
+        "fa fa-user": {
+            label: "User",
+            class: "fa fa-user",
+            category: "Profile"
+        },
+        "fa fa-cog": {
+            label: "Settings",
+            class: "fa fa-cog",
+            category: "System"
+        },
+        1: "fa fa-archway"
+    };
+
+    // Output handler
+    function updateOutput(iconKey) {
+        document.getElementById('selected-output').textContent = iconKey;
+    }
+
+    // Input mode picker
+    new select2icon({
+        mode: 'input',
+        target: '#icon-picker-input',
+        //icons: sampleIcons,
+        iconSourceUrl: './../icons/icons-font-awesome-6.6.0-all.json',
+        onSelected: updateOutput
+    });
+
+    // Dropdown mode picker
+    new select2icon({
+        mode: 'dropdown',
+        target: '#icon-picker-dropdown',
+        icons: sampleIcons,
+        onSelected: updateOutput
+    });
+
+
+    // Dropdown mode picker
+    new select2icon({
+        mode: 'inline',
+        target: '#icon-picker-inline',
+        //icons: sampleIcons,
+        showHeader: true,
+        headerText: 'Choose an Icon 😊',
+        showSearch: false,
+        showFooter: (container) => {
+            const footer = document.createElement('div');
+            footer.className = 'select2icon-footer p-2 text-center';
+            footer.innerHTML = '<small class="text-muted">Select2Icon Demo Footer</small>';
+            container.appendChild(footer);
+        },
+        onSelected: updateOutput
+    });
+</script>
+</body>
+</html>

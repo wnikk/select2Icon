@@ -1,0 +1,23 @@
+{
+    "name": "select2icon",
+    "version": "1.0.0",
+    "main": "dist/select2icon.min.js",
+    "style": "dist/select2icon.min.css",
+    "exports": {
+        ".": {
+            "import": "./dist/select2icon.min.js",
+            "require": "./dist/select2icon.min.js"
+        },
+        "./vue": "./dist/Select2IconVue.vue",
+        "./react": "./dist/Select2IconReact.jsx",
+        "./icons": "./icons/index.js"
+    },
+    "files": [
+        "dist/",
+        "icons/",
+        "README.md"
+    ],
+    "keywords": ["icon picker", "emoji selector", "dropdown", "vue", "react"],
+    "license": "MIT",
+    "dependencies": {}
+}

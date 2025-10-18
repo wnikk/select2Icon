@@ -1,9 +1,9 @@
-// select2icon.js
-// Lightweight, framework-agnostic icon/emoji picker component
-//
-// Usage example:
-// new select2icon({ target: '#myInput', icons: [ ... ], onSelected: (key) => console.log(key) });
-//
+/**
+ * select2icon - A versatile icon picker component
+ * Version: 1.0.0
+ *
+ * License: MIT
+ */
 (function () {
     // Main class for the icon picker
     class select2icon {
@@ -237,7 +237,10 @@
                 return;
             }
 
-            target.dataset.select2icon = this;
+            // Attach reference to instance for external access
+            if (target.dataset) {
+                target.dataset.select2icon = this;
+            }
 
             if (this.config.mode === 'input') {
                 target.placeholder = this.translations.placeholder;

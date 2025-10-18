@@ -13,7 +13,7 @@ It supports input, dropdown, and inline modes, and is fully customizable and ext
 ---
 
 ## 🚀 Features
-- ⚡ Lightweight (~15KB minified + gzipped)
+- ⚡ Lightweight (~11KB minified + gzipped)
 - 🆓 No dependencies
 - 🔍 Real-time search with keyboard navigation
 - 🎨 Supports icon fonts, emojis, SVGs, and raw HTML
@@ -77,6 +77,25 @@ new select2icon({
   placeholder: 'Choose an icon...',
   onSelected: (key) => console.log('Selected icon:', key)
 });
+```
+
+## 🧪 Usage for React
+```jsx
+<Select2Icon
+  icons={iconList}
+  language="ru"
+  selected={chosenIcon}
+  onChange={(key) => setChosenIcon(key)}
+/>
+```
+
+## 🧪 Usage for Vue
+```vue
+<Select2Icon
+  :icons="iconList"
+  language="ru"
+  v-model:selected="chosenIcon"
+/>
 ```
 
 ---

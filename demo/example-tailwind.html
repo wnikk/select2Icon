@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Select2Icon Demo</title>
+
+    <!-- Google Fonts: Open Sans -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome 6.6.0 CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Select2Icon -->
+    <link rel="stylesheet" href="./../dist/select2icon.min.css" />
+    <script src="./../dist/select2icon.min.js"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+<div class="max-w-6xl mx-auto py-12">
+    <div class="text-center mb-12">
+        <h1 class="mb-4 text-4xl font-bold">
+            🎨 Select2Icon Icon Picker
+        </h1>
+        <p class="text-lg text-gray-700">
+            A demo page showcasing the Select2Icon icon picker<br/>
+            in various modes using <span class="font-semibold">Tailwind CSS</span> and Font Awesome 6.6.0,<br/>
+            with a powerful base API for customization.
+        </p>
+        <div class="flex flex-wrap justify-center gap-3 mt-6">
+            <a class="btn btn-warning bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-2 px-4 rounded flex items-center gap-2" href="https://github.com/wnikk/select2Icon">
+                <i class="fab fa-github"></i> Source Code
+            </a>
+            <a class="btn btn-primary bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded flex items-center gap-2" href="https://github.com/wnikk/select2Icon/releases">
+                <i class="fas fa-download"></i> Download
+            </a>
+            <a class="btn btn-success bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded flex items-center gap-2" href="https://buymeacoffee.com/wnik">
+                <i class="far fa-heart"></i> Donate
+            </a>
+            <a class="btn btn-default bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded flex items-center gap-2" href="https://github.com/wnikk/select2Icon/stargazers">
+                <i class="fas fa-star"></i> Supporters
+            </a>
+        </div>
+    </div>
+
+    <div class="bg-white rounded-lg shadow-lg">
+        <div class="border-b px-6 py-4 text-center">
+            <p class="text-gray-500 mt-0">
+                Demonstration of Select2Icon in Input, Dropdown, and Inline modes.
+            </p>
+        </div>
+        <div class="px-6 py-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <!-- Input Mode -->
+                    <label class="block font-medium text-gray-700">Input Mode, big list outside (from icons.json file)</label>
+                    <input id="icon-picker-input1" type="text" class="form-input mt-2 w-full border-gray-300 rounded shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Select an icon..." value="fa fa-user" />
+                    <div class="h-6"></div>
+
+                    <label class="block font-medium text-gray-700">Or input inside an input group</label>
+                    <div class="mt-2 mb-6">
+                        <span style="position: absolute;margin: 8px;">
+                            <i class="fa fa-cog" id="icon-display-for-input2"></i>
+                        </span>
+                        <input id="icon-picker-input2" type="text" style="padding-left: 32px" class="form-input w-full border-gray-300 rounded-r shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Select an icon...">
+                    </div>
+
+                    <!-- Dropdown Mode -->
+                    <div class="inline-block mr-4 align-bottom">
+                        <label class="block font-medium text-gray-700 mb-1">Dropdown mode</label>
+                        <button id="icon-picker-dropdown1" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded shadow flex items-center">Choose Icon</button>
+                    </div>
+
+                    <div class="inline-block mr-4 align-bottom">
+                        <label class="block font-medium text-gray-700 mb-1">Or like that button</label>
+                        <button id="icon-picker-dropdown2" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded shadow flex items-center">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span class="fa fa-angle-down" style="margin-left: 1rem"></span>
+                        </button>
+                    </div>
+
+                    <div class="mt-6">
+                        <!-- Inline Mode -->
+                        <label class="block font-medium text-gray-700 mb-2">Inline Mode</label>
+                        <div id="icon-picker-inline"></div>
+                        <style>
+                            #icon-picker-inline .s2i-icon {
+                                width: 33%;
+                                display: inline-block;
+                            }
+                        </style>
+                    </div>
+                </div>
+                <div>
+                    <div class="text-center mb-8 mt-8">
+                        <h3 class="text-2xl font-semibold mb-2">
+                            <i id="demo-icon" class="fas fa-cloud-upload-alt"></i>
+                        </h3>
+                        <div id="selected-output" class="text-blue-600 text-lg font-mono">fas fa-cloud-upload-alt</div>
+                    </div>
+
+                    <p class="text-sm text-gray-500 mb-4">
+                        This demo showcases the Select2Icon icon picker in various modes:<br/><br/>
+                        <strong>Input Mode:</strong> Allows users to type and search for icons in a text input field. The icon list can be loaded from an external JSON file or provided directly as an object.<br/><br/>
+                        <strong>Dropdown Mode:</strong> Presents a button that, when clicked, displays a dropdown menu of icons for selection. The selected icon is reflected on the button itself.<br/><br/>
+                        <strong>Inline Mode:</strong> Displays the icon picker directly within the page layout, allowing users to select icons without additional clicks. This mode can include headers, footers, and custom text.<br/><br/>
+                        Each mode is customizable with options such as icon sources, event handlers for selection, and UI elements like headers and footers.
+                    </p>
+                    <p>
+                        Example code to initialize a basic Select2Icon picker:
+                    </p>
+                    <div class="bg-gray-100 overflow-auto w-auto border-l-4 border-gray-400 p-4 text-sm font-mono">
+<pre style="margin: 0; line-height: 125%;"><span></span><span style="color: #A2F; font-weight: bold">new</span><span style="color: #BBB"> </span>select2icon({
+<span style="color: #BBB">    </span>target<span style="color: #666">:</span><span style="color: #BBB"> </span><span style="color: #BA2121">'#icon-picker-input'</span>,
+<span style="color: #BBB">    </span>icons<span style="color: #666">:</span><span style="color: #BBB"> </span>[
+        <span style="color: #BA2121">"fa fa-home"</span>,<span style="color: #BA2121">"fa fa-search"</span>,
+        <span style="color: #BA2121">"fa fa-user"</span>,<span style="color: #BA2121">"fa fa-cog"</span>,
+        <span style="color: #BA2121">"fa fa-archway"</span>],
+<span style="color: #BBB">    </span>onSelected<span style="color: #666">:</span><span style="color: #BBB"> </span>(key)<span style="color: #BBB"> </span>=&gt;<span style="color: #BBB"> </span>console.log(<span style="color: #BA2121">'Selected icon:'</span>,<span style="color: #BBB"> </span>key)
+<span style="color: #BBB">  </span>});
+</pre></div>
+                    <p class="my-3 text-sm text-gray-500">
+                        You can also use any library of icons, images, or even emojis.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="border-t px-6 py-4 text-gray-400 text-right text-sm">
+            Select2Icon Demo &copy; 2025
+            Created by <a class="text-blue-500 hover:underline" href="https://github.com/wnikk" target="_blank">Nik</a>
+        </div>
+    </div>
+</div>
+
+<!-- Demo Initialization -->
+<script>
+    // Optional global language override
+    window.Select2IconLang = 'en';
+
+    // Sample icon data (can be loaded from icons.json)
+    const sampleIcons = {
+        "fa fa-home": {
+            label: "Home",
+            class: "fa fa-home",
+            category: "Navigation"
+        },
+        "fa fa-search": {
+            label: "Search",
+            class: "fa fa-search",
+            category: "Utility"
+        },
+        "fa fa-user": {
+            label: "User",
+            class: "fa fa-user",
+            category: "Profile"
+        },
+        "fa fa-cog": {
+            label: "Settings",
+            class: "fa fa-cog",
+            category: "System"
+        },
+        1: "fa fa-archway"
+    };
+
+    // Output handler
+    function updateOutput(iconKey) {
+        document.getElementById('demo-icon').className = iconKey;
+        document.getElementById('selected-output').textContent = iconKey;
+    }
+
+    // Input mode picker
+    new select2icon({
+        mode: 'input',
+        target: '#icon-picker-input1',
+        //icons: sampleIcons,
+        iconSourceUrl: './../icons/icons-font-awesome-6.6.0-all.json',
+        onSelected: updateOutput
+    });
+
+    // Input mode picker
+    new select2icon({
+        mode: 'input',
+        target: '#icon-picker-input2',
+        icons: sampleIcons,
+        onSelected: (iconClass) => {
+            document.getElementById('icon-display-for-input2').classList = iconClass;
+            updateOutput(iconClass);
+        }
+    });
+
+    // Dropdown mode picker
+    new select2icon({
+        mode: 'dropdown',
+        target: '#icon-picker-dropdown1',
+        icons: sampleIcons,
+        onSelected: updateOutput
+    });
+
+    // Dropdown mode picker 2
+    new select2icon({
+        mode: 'dropdown',
+        target: '#icon-picker-dropdown2',
+        //icons: sampleIcons,
+        iconSourceUrl: './../icons/icons-font-awesome-6.6.0-all.json',
+        onSelected: (iconClass) => {
+            document.querySelector('#icon-picker-dropdown2 i').classList = iconClass;
+            updateOutput(iconClass);
+        }
+    });
+
+    // Inline mode picker
+    new select2icon({
+        mode: 'inline',
+        target: '#icon-picker-inline',
+        icons: sampleIcons,
+        showHeader: true,
+        headerText: 'Choose an Icon 😊 text here',
+        showSearch: false,
+        showFooter: (container) => {
+            const footer = document.createElement('div');
+            footer.className = 'select2icon-footer text-center border-t pt-2 mt-0';
+            footer.innerHTML = '<small class="text-gray-400">Custom footer</small>';
+            container.appendChild(footer);
+        },
+        onSelected: updateOutput
+    });
+</script>
+</body>
+</html>

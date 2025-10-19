@@ -12,7 +12,7 @@ It supports input, dropdown, and inline modes, and is fully customizable and ext
 
 ---
 
-## 🚀 Features
+## Features
 - ⚡ Lightweight (~11KB minified + gzipped)
 - 🆓 No dependencies
 - 🔍 Real-time search with keyboard navigation
@@ -25,9 +25,7 @@ It supports input, dropdown, and inline modes, and is fully customizable and ext
 - 🧭 Natural behavior like native `<select>`: closes on outside click
 - 🧱 Header and footer can be static or dynamically rendered via functions
 
----
-
-## 📦 Installation
+## Installation
 
 Include the JS and CSS files in your project:
 
@@ -36,39 +34,38 @@ Include the JS and CSS files in your project:
 <script src="./js/select2icon.js"></script>
 ```
 
----
-
-## 🧪 Usage Example
+## Usage Example
 
 ```html
 <input id="icon-picker-input" type="text" placeholder="Select an icon..." />
 
 <script>
-const sampleIcons1 = [
-    { class: "fa fa-cog", label: "Settings", category: "System",
-        search: {terms: ["gear", "preferences", "options"]}
-    },
-    "fa fa-archway",
-    "<svg viewBox='0 0 24 24'><circle cx='12' cy='12' r='10' fill='blue'/></svg>"
-];
-    
-  const sampleIcons2 = {
-    "fa fa-user": { label: "User", search: {
-        terms: ["person", "account", "profile"]
-    }},
+  const sampleIcons = {
+    "fa fa-user": { label: "User", search: {terms: ["person", "account", "profile"]}},
     "fa fa-home": { label: "Home", class: "fa fa-home" },
     "fa fa-search": { label: "Search", class: "fa fa-search" }
   };
 
-  new select2icon({
-    target: '#icon-picker-input',
-    icons: sampleIcons1,
-    onSelected: (key) => console.log('Selected icon:', key)
-  });
+  new select2icon({target: '#icon-picker-input', icons: sampleIcons});
 </script>
 ```
 
-Or from file:
+### Other type of icon definitions:
+
+```js
+const iconListArray = [
+  // Object definition with metadata
+  { class: "fa fa-cog", label: "Settings", category: "System",
+      search: {terms: ["gear", "preferences", "options"]}
+  }, 
+  // Class string definition
+  "fa fa-archway",
+  // Or raw HTML definition
+  "<svg viewBox='0 0 24 24'><circle cx='12' cy='12' r='10' fill='blue'/></svg>"
+]; 
+```
+
+### Load from file:
 
 ```js
 new select2icon({
@@ -98,9 +95,7 @@ new select2icon({
 />
 ```
 
----
-
-## ⚙️ Configuration Options
+## Configuration Options
 
 | Option               | Type      | Default                              | Description                                                                             |
 |----------------------|-----------|--------------------------------------|-----------------------------------------------------------------------------------------|
@@ -122,18 +117,14 @@ new select2icon({
 | `onOpened`           | function  | `() => {}`                           | Callback when popup opens                                                               |
 | `onClosed`           | function  | `() => {}`                           | Callback when popup closes                                                              |
 
----
-
-## 🧠 Keyboard Navigation
+## Keyboard Navigation
 
 - `ArrowDown` / `ArrowUp`: Navigate between visible icons
 - `Enter`: Select highlighted icon or auto-select if only one match
 - `Escape`: Close popup
 - `Backspace`: Return focus to search field
 
----
-
-## 🔧 Framework Compatibility
+## Framework Compatibility
 
 Select2Icon is **100% framework-agnostic**. It works seamlessly with:
 
@@ -144,9 +135,7 @@ Select2Icon is **100% framework-agnostic**. It works seamlessly with:
 
 No dependencies. No build tools required. Just plug and play.
 
----
-
-## 🌐 Adding a New Language Translation
+## Adding a New Language Translation
 
 Select2Icon supports localization through a simple internal dictionary.
 To add a new language, follow these steps:
@@ -190,10 +179,6 @@ If a language code is not found, Select2Icon will check page's `<html lang="..."
 If still not found, it will check the browser's language settings.
 If no match is found, it will default to English (`en`).
 
----
-
-## 📚 License
+## License
 
 MIT License - free to use, modify, and distribute.
-
----

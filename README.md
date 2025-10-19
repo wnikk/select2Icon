@@ -38,8 +38,8 @@ Include the JS and CSS files in your project:
 <script>
   const sampleIcons = {
     "fa fa-user": { label: "User", search: {terms: ["person", "account", "profile"]}},
-    "fa fa-home": { label: "Home", class: "fa fa-home" },
-    "fa fa-search": { label: "Search", class: "fa fa-search" }
+    "fa fa-home": { label: "Home" },
+    "fa fa-search": { label: "Search" }
   };
 
   new select2icon({target: '#icon-picker-input', icons: sampleIcons});

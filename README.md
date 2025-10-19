@@ -4,13 +4,8 @@
 for selecting icons with a modern, searchable UI.
 It supports input, dropdown, and inline modes, and is fully customizable and extendable.
 
----
+![Example of Select2Icon in dropdown mode](https://github.com/wnikk/select2Icon/blob/master/demo/screen.gif)
 
-@TODO: Add demo Screenshot
-
-*Example of Select2Icon in dropdown mode with search and header enabled*
-
----
 
 ## Features
 - ⚡ Lightweight (~11KB minified + gzipped)

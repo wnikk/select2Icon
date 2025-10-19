@@ -1,6 +1,7 @@
 /**
  * select2icon - A versatile icon picker component
  * Version: 1.0.0
+ * Source: https://github.com/wnikk/select2Icon
  *
  * License: MIT
  */

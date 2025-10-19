@@ -4,7 +4,7 @@
 for selecting icons with a modern, searchable UI.
 It supports input, dropdown, and inline modes, and is fully customizable and extendable.
 
-![Example of Select2Icon in dropdown mode](https://github.com/wnikk/select2Icon/blob/master/demo/screen.gif)
+![Example of Select2Icon in dropdown mode](https://github.com/wnikk/select2Icon/blob/main/demo/screen.gif)
 
 
 ## Features

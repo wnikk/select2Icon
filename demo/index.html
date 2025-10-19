@@ -42,7 +42,7 @@
                 <i class="far fa-heart"></i> Donate
             </a>
             <a class="btn btn-default"
-               href="https://github.com/wnikk/select2Icon/issues">
+               href="https://github.com/wnikk/select2Icon/stargazers">
                 <i class="fas fa-star"></i> Supporters
             </a>
         </p>
@@ -50,7 +50,7 @@
 
     <div class="card">
         <div class="card-header text-center">
-            <p class="card-subtitle text-muted mt-1">
+            <p class="card-subtitle text-muted mt-0">
                 Demonstration of Select2Icon in Input, Dropdown, and Inline modes.
             </p>
         </div>
@@ -96,6 +96,12 @@
                         <!-- Inline Mode -->
                         <label>Inline Mode</label><br/>
                         <div id="icon-picker-inline"></div>
+                        <style>
+                            #icon-picker-inline .s2i-icon {
+                                width: 33%;
+                                display: inline-block;
+                            }
+                        </style>
                     </div>
                     <br/><br/>
 
@@ -133,8 +139,15 @@
 <span style="color: #BBB">    </span>onSelected<span style="color: #666">:</span><span style="color: #BBB"> </span>(key)<span style="color: #BBB"> </span>=&gt;<span style="color: #BBB"> </span>console.log(<span style="color: #BA2121">&#39;Selected icon:&#39;</span>,<span style="color: #BBB"> </span>key)
 <span style="color: #BBB">  </span>});
 </pre></div>
+                    <p class="my-3 small text-muted">
+                        You can also use any library of icons, images, or even emojis.
+                    </p>
                 </div>
             </div>
+        </div>
+        <div class="card-footer text-muted text-end">
+            Select2Icon Demo &copy; 2025
+            Created by <a href="https://github.com/wnikk" target="_blank">Nik</a>
         </div>
     </div>
 </div>
@@ -221,12 +234,12 @@
         target: '#icon-picker-inline',
         icons: sampleIcons,
         showHeader: true,
-        headerText: 'Choose an Icon 😊',
+        headerText: 'Choose an Icon 😊 text here',
         showSearch: false,
         showFooter: (container) => {
             const footer = document.createElement('div');
-            footer.className = 'select2icon-footer p-2 text-center';
-            footer.innerHTML = '<small class="text-muted">Select2Icon Demo Footer</small>';
+            footer.className = 'select2icon-footer text-center border-top pt-2 mt-0';
+            footer.innerHTML = '<small class="text-muted">Custom footer</small>';
             container.appendChild(footer);
         },
         onSelected: updateOutput

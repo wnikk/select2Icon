@@ -76,7 +76,7 @@ new select2icon({
 });
 ```
 
-## 🧪 Usage for React
+## Usage for React
 ```jsx
 <Select2Icon
   icons={iconList}
@@ -86,7 +86,7 @@ new select2icon({
 />
 ```
 
-## 🧪 Usage for Vue
+## Usage for Vue
 ```vue
 <Select2Icon
   :icons="iconList"
@@ -116,6 +116,33 @@ new select2icon({
 | `onUpdated`          | function  | `() => {}`                           | Callback when icon is updated via API                                                   |
 | `onOpened`           | function  | `() => {}`                           | Callback when popup opens                                                               |
 | `onClosed`           | function  | `() => {}`                           | Callback when popup closes                                                              |
+
+## API Reference
+
+| Method         | Description                                                                 | Parameters           | Returns             |
+|----------------|------------------------------------------------------------------------------|----------------------|---------------------|
+| `setIcon(key)` | Manually sets the selected icon                                             | `key: string`        | `void`              |
+| `getIcon()`    | Returns the currently selected icon key                                     | —                    | `string \| null`    |
+| `openPopup()`  | Programmatically opens the icon picker popup                                | —                    | `void`              |
+| `destroy()`    | Destroys the component and removes it from the DOM                          | —                    | `void`              |
+| `refresh()`    | Re-renders the icon list (useful after updating the `icons` array)          | —                    | `void`              |
+
+## Usage API Example
+
+```js
+const picker = new select2icon(...);
+//or: picker = document.querySelector('#iconInput').dataset.select2icon;
+
+// Set icon manually
+picker.setIcon('fa fa-star');
+
+// Get current icon
+console.log(picker.getIcon());
+
+// Open popup
+picker.openPopup();
+```
+
 
 ## Keyboard Navigation
 

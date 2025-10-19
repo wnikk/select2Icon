@@ -220,7 +220,8 @@
     new select2icon({
         mode: 'dropdown',
         target: '#icon-picker-dropdown2',
-        icons: sampleIcons,
+        //icons: sampleIcons,
+        iconSourceUrl: './../icons/icons-font-awesome-6.6.0-all.json',
         onSelected: (iconClass) => {
             document.querySelector('#icon-picker-dropdown2 i').classList = iconClass;
             updateOutput(iconClass);

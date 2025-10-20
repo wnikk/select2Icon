@@ -1,6 +1,6 @@
 /**
  * select2icon - A versatile icon picker component
- * Version: 1.0.1
+ * Version: 1.0.2
  * Source: https://github.com/wnikk/select2Icon
  *
  * License: MIT
@@ -267,6 +267,7 @@
                 this._renderIcons(this.container);
                 this._renderFooter(this.container);
                 target.appendChild(this.container);
+                this.popup = this.container;
             }
         }
 
@@ -335,7 +336,7 @@
          * Handles fade-out and cleanup
          */
         _closePopup() {
-            if (!this.popup) {return;}
+            if (!this.popup || this.config.mode === 'inline') {return;}
 
             this.popup.classList.remove('s2i-visible');
 
@@ -463,7 +464,7 @@
          * @param {string} query
          */
         _filterIcons(query) {
-            const icons = this.container.querySelectorAll('.s2i-icon');
+            const icons = this.popup.querySelectorAll('.s2i-icon');
             icons.forEach(icon => {
                 const key = icon.dataset.key.toLowerCase();
                 const data = this.iconData[icon.dataset.key];
@@ -479,7 +480,7 @@
                 icon.style.display = match ? '' : 'none';
             });
 
-            const visibleIcons = Array.from(this.container.querySelectorAll('.s2i-icon'))
+            const visibleIcons = Array.from(this.popup.querySelectorAll('.s2i-icon'))
                 .filter(icon => icon.style.display !== 'none');
 
             if (visibleIcons.length === 1) {

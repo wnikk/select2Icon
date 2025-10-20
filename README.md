@@ -26,8 +26,8 @@ It supports input, dropdown, and inline modes, and is fully customizable and ext
 
 Include the JS and CSS files in your project:
 ```html
-<link rel="stylesheet" href="./css/select2icon.css" />
-<script src="./js/select2icon.js"></script>
+<link rel="stylesheet" href="./dist/select2icon.min.css" />
+<script src="./dist/select2icon.min.js"></script>
 ```
 
 Or install via NPM:

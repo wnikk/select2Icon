@@ -7,6 +7,7 @@ It supports input, dropdown, and inline modes, and is fully customizable and ext
 ## Screenshots
 
 ![Example of Select2Icon in dropdown mode](https://github.com/wnikk/select2Icon/blob/main/demo/screen.gif)
+![Example of Select2Icon in input mode and emojis](https://github.com/wnikk/select2Icon/blob/main/demo/screen-emoji.gif)
 
 ## Features
 - ⚡ Lightweight (~11KB minified + gzipped)
@@ -113,6 +114,7 @@ new select2icon({
 | `showHeader`         | boolean/function | `true`                               | Show header or render custom header via function `(container, instance) => HTMLElement` |
 | `headerText`         | string    | `'Select an icon...'`                | Used only if `showHeader` is `true`                                                     |
 | `showSearch`         | boolean   | `true`                               | Show search input field                                                                 |
+| `showCategory`       | boolean   | `true`                               | Show category labels if defined in icon metadata                                        |
 | `showFooter`         | boolean/function | `true`                               | Show footer or render custom footer via function `(container, instance) => HTMLElement` |
 | `mustAccept`         | boolean   | `false`                              | Require explicit confirmation via Apply button                                          |
 | `selectedCustomClass`| string    | `'s2i-selected'`                     | CSS class for selected icon                                                             |
@@ -128,6 +130,7 @@ new select2icon({
 | `setIcon(key)` | Manually sets the selected icon                                             | `key: string`        | `void`              |
 | `getIcon()`    | Returns the currently selected icon key                                     | —                    | `string \| null`    |
 | `openPopup()`  | Programmatically opens the icon picker popup                                | —                    | `void`              |
+| `closePopup()` | Programmatically closes the icon picker popup                               | —                    | `void`              |
 | `destroy()`    | Destroys the component and removes it from the DOM                          | —                    | `void`              |
 | `refresh()`    | Re-renders the icon list (useful after updating the `icons` array)          | —                    | `void`              |
 

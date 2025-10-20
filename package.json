@@ -1,6 +1,6 @@
 {
     "name": "select2icon",
-    "version": "1.0.2",
+    "version": "1.2.0",
     "main": "dist/select2icon.min.js",
     "style": "dist/select2icon.min.css",
     "exports": {

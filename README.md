@@ -191,7 +191,7 @@ window.Select2IconLang = {
         close: 'Закрити',
         placeholder: 'Виберіть іконку...',
         search: 'Пошук...',
-        allo: 'Показати всі'
+        all: 'Показати всі'
     },
     ru: {
         selectIcon: 'Выбрать иконку',

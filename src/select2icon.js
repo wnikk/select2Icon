@@ -1,6 +1,6 @@
 /**
  * select2icon - A versatile icon picker component
- * Version: 1.2.0
+ * Version: 1.2.1
  * Source: https://github.com/wnikk/select2Icon
  *
  * License: MIT
@@ -110,7 +110,10 @@
                         if (
                             inst.popup &&
                             inst.config.mode !== 'inline' &&
-                            !inst.container.contains(e.target)
+                            !(
+                                (inst.container && inst.container.contains(e.target)) ||
+                                (inst.popup && inst.popup.contains(e.target))
+                            )
                         ) {
                             inst._closePopup();
                         }

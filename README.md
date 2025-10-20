@@ -24,10 +24,14 @@ It supports input, dropdown, and inline modes, and is fully customizable and ext
 ## Installation
 
 Include the JS and CSS files in your project:
-
 ```html
 <link rel="stylesheet" href="./css/select2icon.css" />
 <script src="./js/select2icon.js"></script>
+```
+
+Or install via NPM:
+```bash
+npm i select2icon
 ```
 
 ## Usage Example

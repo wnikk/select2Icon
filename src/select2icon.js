@@ -1,6 +1,6 @@
 /**
  * select2icon - A versatile icon picker component
- * Version: 1.2.1
+ * Version: 1.2.2
  * Source: https://github.com/wnikk/select2Icon
  *
  * License: MIT
@@ -580,7 +580,7 @@
          * Highlights the selected icon in the grid
          */
         _highlightSelected() {
-            const icons = this.container.querySelectorAll('.s2i-icon');
+            const icons = this.popup.querySelectorAll('.s2i-icon');
             icons.forEach(icon => {
                 icon.classList.remove(this.config.selectedCustomClass);
                 if (icon.dataset.key === this.selectedIcon) {
@@ -606,7 +606,7 @@
          * @param {HTMLInputElement} input
          */
         _handleSearchKey(e, input) {
-            const visibleIcons = Array.from(this.container.querySelectorAll('.s2i-icon'))
+            const visibleIcons = Array.from(this.popup.querySelectorAll('.s2i-icon'))
                 .filter(icon => icon.style.display !== 'none');
 
             if (e.key === 'ArrowDown') {

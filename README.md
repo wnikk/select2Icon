@@ -56,7 +56,7 @@ const iconListArray = [
   },
   // HTML definition with metadata
   { html:"🌳", label:"deciduous tree", category:"Animals & Nature",
-      search:{"terms":["plant","nature","forest"]}
+      search: {terms: ["plant","nature","forest"]}
   },
   // Class string definition
   "fa fa-archway",

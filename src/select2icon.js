@@ -1,6 +1,6 @@
 /**
  * select2icon - A versatile icon picker component
- * Version: 1.2.2
+ * Version: 1.3.0
  * Source: https://github.com/wnikk/select2Icon
  *
  * License: MIT
@@ -425,7 +425,7 @@
                             } else {
                                 this.selectedCategory = (this.selectedCategory === cat) ? null : cat;
                             }
-                            this._filterIcons(searchInput?.value.trim().toLowerCase());
+                            this._filterIcons(searchInput?.value.trim().toLowerCase() || '');
                             Array.from(tabs.children).forEach(btn => btn.classList.toggle('s2i-category-active', btn === tab));
                         });
                         tabs.appendChild(tab);

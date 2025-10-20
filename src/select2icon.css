@@ -1,57 +1,86 @@
 /**
  * select2icon - A versatile icon picker component
- * Version: 1.2.2
+ * Version: 1.3.0
  * Source: https://github.com/wnikk/select2Icon
  *
  * License: MIT
  */
 /* Container for input, dropdown, or inline */
+.s2i-container, .s2i-popup {
+    /* Color palette */
+    --s2i-bg: #fff;
+    --s2i-bg-alt: #fafafa;
+    --s2i-bg-popup: #fff;
+    --s2i-bg-header: #fafafa;
+    --s2i-bg-footer: #fafafa;
+    --s2i-bg-input: #fff;
+    --s2i-bg-button: #f8f8f8;
+    --s2i-bg-tab: #f3f3f3;
+    --s2i-bg-tab-active: #007bff;
+    --s2i-bg-icon-hover: #f0f0f0;
+    --s2i-bg-selected: #007bff;
+    --s2i-bg-close: #eee;
+    --s2i-bg-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+    --s2i-color: #333;
+    --s2i-color-muted: #666;
+    --s2i-color-border: #ccc;
+    --s2i-color-border-light: #eee;
+    --s2i-color-tab-active: #fff;
+    --s2i-color-selected: #fff;
+    --s2i-color-close: #333;
+    --s2i-color-placeholder: #999;
+
+    /* Sizing and spacing */
+    --s2i-radius: 6px;
+    --s2i-radius-small: 4px;
+    --s2i-radius-tab: 8px 8px 0 0;
+    --s2i-padding: 12px;
+    --s2i-padding-small: 8px;
+    --s2i-padding-xs: 6px;
+    --s2i-gap: 10px;
+    --s2i-gap-small: 6px;
+    --s2i-font-size: 14px;
+    --s2i-font-size-small: 12px;
+    --s2i-font-size-icon: 20px;
+    --s2i-width: 280px;
+    --s2i-max-height: 360px;
+}
+
 .s2i-container {
     position: relative;
     display: inline-block;
     font-family: sans-serif;
 }
 
-/* Input styling */
-.s2i-input {
-    width: 100%;
-    padding: 8px 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-/* Dropdown button */
 .s2i-button {
-    padding: 8px 12px;
-    font-size: 14px;
-    background-color: #f8f8f8;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: var(--s2i-padding-small) 12px;
+    font-size: var(--s2i-font-size);
+    background-color: var(--s2i-bg-button);
+    border: 1px solid var(--s2i-color-border);
+    border-radius: var(--s2i-radius-small);
     cursor: pointer;
+    color: var(--s2i-color);
 }
 
 /* Popup layout */
 .s2i-popup {
     position: absolute;
     z-index: 999;
-    width: 280px;
-    max-height: 360px;
+    width: var(--s2i-width);
+    max-height: var(--s2i-max-height);
     display: flex;
     flex-direction: column;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-/* Initial hidden state */
-.s2i-popup {
+    background-color: var(--s2i-bg-popup);
+    border: 1px solid var(--s2i-color-border);
+    border-radius: var(--s2i-radius);
+    box-shadow: var(--s2i-bg-shadow);
+    color: var(--s2i-color);
     opacity: 0;
     transform: scale(0.98);
     transition: opacity 0.20s ease, transform 0.20s ease;
     pointer-events: none;
 }
-
 /* Active state when shown */
 .s2i-popup.s2i-visible {
     opacity: 1;
@@ -62,47 +91,50 @@
 /* Header and footer fixed */
 .s2i-header,
 .s2i-footer {
-    padding: 12px;
-    background-color: #fafafa;
+    padding: var(--s2i-padding);
+    background-color: var(--s2i-bg-header);
     flex-shrink: 0;
 }
 
 .s2i-header {
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--s2i-color-border-light);
 }
 
 .s2i-footer {
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--s2i-color-border-light);
     display: flex;
     justify-content: flex-end;
     gap: 8px;
+    background-color: var(--s2i-bg-footer);
 }
 
 /* Title text */
 .s2i-title {
     font-weight: 600;
-    margin-bottom: 8px;
+    margin-bottom: var(--s2i-gap-small);
 }
 
 /* Search input */
 .s2i-search {
     width: 100%;
-    padding: 6px 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: var(--s2i-padding-xs) 10px;
+    font-size: var(--s2i-font-size);
+    border: 1px solid var(--s2i-color-border);
+    border-radius: var(--s2i-radius-small);
+    background: var(--s2i-bg-input);
+    color: var(--s2i-color);
 }
 /* Category tabs */
 .s2i-categories {
-    margin-top: 8px;
-    margin-bottom: -12px;
+    margin-top: var(--s2i-gap-small);
+    margin-bottom: calc(-1 * var(--s2i-padding));
     display: flex;
-    gap: 6px;
+    gap: var(--s2i-gap-small);
     flex-wrap: nowrap;
     overflow-x: auto;
     overflow-y: hidden;
     height: 22px;
-    font-size: 12px;
+    font-size: var(--s2i-font-size-small);
     scrollbar-width: none; /* Firefox */
 }
 .s2i-categories::-webkit-scrollbar {
@@ -111,17 +143,18 @@
 }
 
 .s2i-category-tab {
-    background: #f3f3f3;
+    background: var(--s2i-bg-tab);
     border: none;
     padding: 0 8px;
-    border-radius: 8px 8px 0 0;
+    border-radius: var(--s2i-radius-tab);
     cursor: pointer;
     transition: background 0.2s;
     flex: 0 0 auto;
+    color: var(--s2i-color);
 }
 .s2i-category-active {
-    background: #007bff;
-    color: #fff;
+    background: var(--s2i-bg-tab-active);
+    color: var(--s2i-color-tab-active);
 }
 
 
@@ -129,50 +162,52 @@
 .s2i-grid {
     flex-grow: 1;
     overflow-y: auto;
-    padding: 12px;
+    padding: var(--s2i-padding);
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(32px, 1fr));
-    gap: 10px;
+    gap: var(--s2i-gap);
 }
 
 /* Icon item */
 .s2i-icon {
-    font-size: 20px;
+    font-size: var(--s2i-font-size-icon);
     text-align: center;
     cursor: pointer;
-    padding: 6px;
-    border-radius: 4px;
+    padding: var(--s2i-padding-xs);
+    border-radius: var(--s2i-radius-small);
     transition: background-color 0.2s ease;
     outline: none;
+    color: var(--s2i-color);
+    background: transparent;
 }
 
 .s2i-icon:hover,
 .s2i-icon:focus {
-    background-color: #f0f0f0;
+    background-color: var(--s2i-bg-icon-hover);
 }
 
 /* Selected icon */
 .s2i-selected {
-    background-color: #007bff;
-    color: #fff;
+    background-color: var(--s2i-bg-selected);
+    color: var(--s2i-color-selected);
 }
 
 /* Confirm and close buttons */
 .s2i-confirm,
 .s2i-close {
-    padding: 6px 12px;
+    padding: var(--s2i-padding-xs) 12px;
     font-size: 13px;
     border: none;
-    border-radius: 4px;
+    border-radius: var(--s2i-radius-small);
     cursor: pointer;
 }
 
 .s2i-confirm {
-    background-color: #007bff;
-    color: #fff;
+    background-color: var(--s2i-bg-selected);
+    color: var(--s2i-color-selected);
 }
 
 .s2i-close {
-    background-color: #eee;
-    color: #333;
+    background-color: var(--s2i-bg-close);
+    color: var(--s2i-color-close);
 }

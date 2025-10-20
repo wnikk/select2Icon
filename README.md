@@ -102,37 +102,37 @@ new select2icon({
 
 ## Configuration Options
 
-| Option               | Type      | Default                              | Description                                                                             |
-|----------------------|-----------|--------------------------------------|-----------------------------------------------------------------------------------------|
-| `target`             | string/HTMLElement | -                                    | Selector or DOM element for attach                                                      |
-| `selected`        | string    | `null`                                    | Set initial selected icon                                                               |
-| `icons`              | array/object | `null`                               | Icon definitions: objects, class strings, or HTML                                       |
-| `iconSourceUrl`      | string    | `'./icons/icons.json'`               | Fallback URL to load icons from                                                         |
-| `mode`               | string    | auto (`input`, `dropdown`, `inline`) | Auto-detected unless explicitly set                                                     |
-| `placeholder`        | string    | `'Select an icon...'`                | Placeholder for input field                                                             |
-| `language`           | string    | browser-detected                     | Language code (`en`, `ru`, etc.)                                                        |
-| `showHeader`         | boolean/function | `true`                               | Show header or render custom header via function `(container, instance) => HTMLElement` |
-| `headerText`         | string    | `'Select an icon...'`                | Used only if `showHeader` is `true`                                                     |
-| `showSearch`         | boolean   | `true`                               | Show search input field                                                                 |
-| `showCategory`       | boolean   | `true`                               | Show category labels if defined in icon metadata                                        |
-| `showFooter`         | boolean/function | `true`                               | Show footer or render custom footer via function `(container, instance) => HTMLElement` |
-| `mustAccept`         | boolean   | `false`                              | Require explicit confirmation via Apply button                                          |
-| `selectedCustomClass`| string    | `'s2i-selected'`                     | CSS class for selected icon                                                             |
-| `onSelected`         | function  | `() => {}`                           | Callback when icon is selected                                                          |
-| `onUpdated`          | function  | `() => {}`                           | Callback when icon is updated via API                                                   |
-| `onOpened`           | function  | `() => {}`                           | Callback when popup opens                                                               |
-| `onClosed`           | function  | `() => {}`                           | Callback when popup closes                                                              |
+| Option                | Type      | Default                            | Description                                                                             |
+|-----------------------|-----------|------------------------------------|-----------------------------------------------------------------------------------------|
+| `target`              | string/HTMLElement | -                         | Selector or DOM element for attach                                                      |
+| `selected`            | string    | `null`                             | Set initial selected icon                                                               |
+| `icons`               | array/object | `null`                          | Icon definitions: objects, class strings, or HTML                                       |
+| `iconSourceUrl`       | string    | `'./icons/icons.json'`             | Fallback URL to load icons from                                                         |
+| `mode`                | string    | auto (`input`, `dropdown`, `inline`) | Auto-detected unless explicitly set                                                   |
+| `placeholder`         | string    | `'Select an icon...'`              | Placeholder for input field                                                             |
+| `language`            | string    | browser-detected                   | Language code (`en`, `ru`, etc.)                                                        |
+| `showHeader`          | boolean/function | `true`                      | Show header or render custom header via function `(container, instance) => HTMLElement` |
+| `headerText`          | string    | `'Select an icon...'`              | Used only if `showHeader` is `true`                                                     |
+| `showSearch`          | boolean   | `true`                             | Show search input field                                                                 |
+| `showCategory`        | boolean   | `true`                             | Show category labels if defined in icon metadata                                        |
+| `showFooter`          | boolean/function | `true`                      | Show footer or render custom footer via function `(container, instance) => HTMLElement` |
+| `mustAccept`          | boolean   | `false`                            | Require explicit confirmation via Apply button                                          |
+| `selectedCustomClass` | string    | `'s2i-selected'`                   | CSS class for selected icon                                                             |
+| `onSelected`          | function  | `() => {}`                         | Callback when icon is selected                                                          |
+| `onUpdated`           | function  | `() => {}`                         | Callback when icon is updated via API                                                   |
+| `onOpened`            | function  | `() => {}`                         | Callback when popup opens                                                               |
+| `onClosed`            | function  | `() => {}`                         | Callback when popup closes                                                              |
 
 ## API Reference
 
-| Method         | Description                                                                 | Parameters           | Returns             |
-|----------------|------------------------------------------------------------------------------|----------------------|---------------------|
-| `setIcon(key)` | Manually sets the selected icon                                             | `key: string`        | `void`              |
-| `getIcon()`    | Returns the currently selected icon key                                     | —                    | `string \| null`    |
-| `openPopup()`  | Programmatically opens the icon picker popup                                | —                    | `void`              |
-| `closePopup()` | Programmatically closes the icon picker popup                               | —                    | `void`              |
-| `destroy()`    | Destroys the component and removes it from the DOM                          | —                    | `void`              |
-| `refresh()`    | Re-renders the icon list (useful after updating the `icons` array)          | —                    | `void`              |
+| Method         | Description                                                        | Parameters           | Returns          |
+|----------------|--------------------------------------------------------------------|----------------------|------------------|
+| `setIcon(key)` | Manually sets the selected icon                                    | `key: string`        | `void`           |
+| `getIcon()`    | Returns the currently selected icon key                            | —                    | `string \| null` |
+| `openPopup()`  | Programmatically opens the icon picker popup                       | —                    | `void`           |
+| `closePopup()` | Programmatically closes the icon picker popup                      | —                    | `void`           |
+| `destroy()`    | Destroys the component and removes it from the DOM                 | —                    | `void`           |
+| `refresh()`    | Re-renders the icon list (useful after updating the `icons` array) | —                    | `void`           |
 
 ## Usage API Example
 
@@ -185,11 +185,16 @@ window.Select2IconLang = {
         close: 'Fermer',
         // 'placeholder', 'search' are missing and will fallback to English
     },
+    uk: {
+        selectIcon: 'Вибрати іконку',
+        apply: 'Застосувати',
+        close: 'Закрити',
+        placeholder: 'Виберіть іконку...',
+        search: 'Пошук...',
+        allo: 'Показати всі'
+    },
     ru: {
         selectIcon: 'Выбрать иконку',
-        apply: 'Применить',
-        close: 'Закрыть',
-        placeholder: 'Выберите иконку...',
         search: 'Поиск...'
     },
 };
@@ -216,3 +221,15 @@ If no match is found, it will default to English (`en`).
 ## License
 
 MIT License - free to use, modify, and distribute.
+
+## Like What You See? :thumbsup:
+
+[![Stars](https://img.shields.io/github/stars/wnikk/select2Icon)](https://github.com/wnikk/select2Icon)
+
+### Give Stars :star:
+
+Make the maintainer happy by hitting the star icon for this repository!
+
+### Ready to be a sponsor? :coffee:
+
+You can now [buy me a latte](https://www.buymeacoffee.com/wnik) =)

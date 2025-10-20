@@ -1,4 +1,4 @@
-# Select2Icon - Icon Picker Component
+# Select2Icon - Icon/emoji Picker Component
 
 **Select2Icon** is a lightweight, framework-agnostic JavaScript component
 for selecting icons with a modern, searchable UI.

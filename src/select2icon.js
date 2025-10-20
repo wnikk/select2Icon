@@ -1,6 +1,6 @@
 /**
  * select2icon - A versatile icon picker component
- * Version: 1.0.0
+ * Version: 1.0.1
  * Source: https://github.com/wnikk/select2Icon
  *
  * License: MIT
@@ -155,7 +155,10 @@
             // If rawIcons is already an object (not an array), assume it's in key-value format
             if (typeof rawIcons === 'object' && !Array.isArray(rawIcons)) {
                 rawIcons = Object.entries(rawIcons);
+            } else if (Array.isArray(rawIcons)) {
+                rawIcons = rawIcons.entries();
             }
+
             for (const [index, item] of rawIcons) {
                 let key = `icon-${index}`;
                 let icon = {};
@@ -464,9 +467,9 @@
             icons.forEach(icon => {
                 const key = icon.dataset.key.toLowerCase();
                 const data = this.iconData[icon.dataset.key];
-                const label = (data.label || '').toLowerCase();
-                const className = (data.class || '').toLowerCase();
-                const terms = (data.search?.terms || []).map(t => t.toLowerCase());
+                const label = (data?.label || '').toString().toLowerCase();
+                const className = (data?.class || '').toString().toLowerCase();
+                const terms = (data?.search?.terms || []).map(t => t.toLowerCase());
 
                 const match = key.includes(query) ||
                     label.includes(query) ||
@@ -497,16 +500,18 @@
             this.selectedIcon = key;
             this._highlightSelected();
 
+            const icon = this.iconData[key]?.html || key;
+
             if (this.config.mode === 'input') {
                 const input = typeof this.config.target === 'string'
                     ? document.querySelector(this.config.target)
                     : this.config.target;
                 if (input && input.tagName === 'INPUT') {
-                    input.value = key;
+                    input.value = icon;
                 }
             }
 
-            this.config.onSelected(key);
+            this.config.onSelected(icon);
             if (!this.config.mustAccept) this._closePopup();
         }
 

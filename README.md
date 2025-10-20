@@ -50,13 +50,17 @@ Include the JS and CSS files in your project:
 
 ```js
 const iconListArray = [
-  // Object definition with metadata
+  // Class definition with metadata
   { class: "fa fa-cog", label: "Settings", category: "System",
       search: {terms: ["gear", "preferences", "options"]}
-  }, 
+  },
+  // HTML definition with metadata
+  { html:"🌳", label:"deciduous tree", category:"Animals & Nature",
+      search:{"terms":["plant","nature","forest"]}
+  },
   // Class string definition
   "fa fa-archway",
-  // Or raw HTML definition
+  // Raw HTML definition as string (start with any tag)
   "<svg viewBox='0 0 24 24'><circle cx='12' cy='12' r='10' fill='blue'/></svg>"
 ]; 
 ```

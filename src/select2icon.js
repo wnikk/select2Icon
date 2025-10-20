@@ -552,6 +552,17 @@
             this.selectedIcon = key;
             this._highlightSelected();
 
+            if (!this.config.mustAccept) {
+                this._confirmSelection();
+            }
+        }
+
+        /**
+         * Confirms selection when mustAccept is true
+         * Triggers onSelected callback
+         */
+        _confirmSelection() {
+            const key = this.selectedIcon;
             const icon = this.iconData[key]?.html || key;
 
             if (this.config.mode === 'input') {
@@ -564,15 +575,6 @@
             }
 
             this.config.onSelected(icon);
-            if (!this.config.mustAccept) this._closePopup();
-        }
-
-        /**
-         * Confirms selection when mustAccept is true
-         * Triggers onSelected callback
-         */
-        _confirmSelection() {
-            this.config.onSelected(this.selectedIcon);
             this._closePopup();
         }
 
@@ -609,16 +611,16 @@
             const visibleIcons = Array.from(this.popup.querySelectorAll('.s2i-icon'))
                 .filter(icon => icon.style.display !== 'none');
 
-            if (e.key === 'ArrowDown') {
+            if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
                 e.preventDefault();
-                this.highlightIndex = Math.min(this.highlightIndex + 1, visibleIcons.length - 1);
-                this._highlightByIndex(visibleIcons);
-            }
 
-            if (e.key === 'ArrowUp') {
-                e.preventDefault();
-                this.highlightIndex = Math.max(this.highlightIndex - 1, 0);
-                this._highlightByIndex(visibleIcons);
+                if (e.key === 'ArrowDown') {
+                    this.highlightIndex = Math.min(this.highlightIndex + 1, visibleIcons.length - 1);
+                } else {
+                    this.highlightIndex = Math.max(this.highlightIndex - 1, 0);
+                }
+                this.selectedIcon = visibleIcons[this.highlightIndex].dataset.key;
+                this._highlightSelected();
             }
 
             if (e.key === 'Enter') {

@@ -1,6 +1,6 @@
 /**
  * select2icon - A versatile icon picker component
- * Version: 1.0.2
+ * Version: 1.2.0
  * Source: https://github.com/wnikk/select2Icon
  *
  * License: MIT
@@ -25,12 +25,13 @@
                 icons: null, // Array or object of icon definitions
                 iconSourceUrl: './icons/icons.json', // Fallback icon source
                 selectedCustomClass: 's2i-selected', // CSS class for selected icon
-                placeholder: 'Select an icon...', // Input placeholder
+                placeholder: '', // Input placeholder
                 language: null, // Language code
 
                 showHeader: false, // Show header section
                 headerText: 'Select an icon...', // Header text
                 showSearch: true, // Show search input
+                showCategory: true, // Show category tabs
 
                 showFooter: false, // Show footer section
                 mustAccept: false, // Require confirmation to select
@@ -47,6 +48,7 @@
             this.popup = null; // Popup panel element
             this.searchInputRef = null; // Reference to search input
             this.highlightIndex = -1; // Keyboard highlight index
+            this.selectedCategory = null; // Currently selected category
 
             // Detect language and load translations
             this.language = this._detectLanguage();
@@ -82,7 +84,9 @@
                 apply: 'Apply',
                 close: 'Close',
                 placeholder: 'Select an icon...',
-                search: 'Search...'
+                search: 'Search...',
+                all: 'All',
+                other: 'Other'
             };
 
             // Allow custom translations via window.Select2IconLang
@@ -247,7 +251,7 @@
             }
 
             if (this.config.mode === 'input') {
-                target.placeholder = this.translations.placeholder;
+                target.placeholder = this.config.placeholder || this.translations.placeholder;
                 target.classList.add('s2i-input');
                 target.addEventListener('focus', () => this._openPopup());
                 target.addEventListener('click', () => this._openPopup());
@@ -362,11 +366,15 @@
                 return;
             }
 
-            if (!this.config.showHeader && !this.config.showSearch) return;
+            // Only render header if at least one of showHeader, showSearch, or categories is enabled
+            const showCategories = !!this.config.showCategory;
+
+            if (!this.config.showHeader && !this.config.showSearch && !showCategories) return;
 
             const header = document.createElement('div');
             header.className = 's2i-header';
 
+            // Render header title if enabled
             if (this.config.showHeader) {
                 const title = document.createElement('div');
                 title.className = 's2i-title';
@@ -374,8 +382,10 @@
                 header.appendChild(title);
             }
 
+            let searchInput;
+            // Render search input if enabled
             if (this.config.showSearch) {
-                const searchInput = document.createElement('input');
+                searchInput = document.createElement('input');
                 searchInput.type = 'text';
                 searchInput.className = 's2i-search';
                 searchInput.placeholder = this.translations.search;
@@ -385,6 +395,40 @@
                 searchInput.addEventListener('keydown', (e) => this._handleSearchKey(e, searchInput));
                 header.appendChild(searchInput);
                 this.searchInputRef = searchInput;
+            }
+
+            // Render category tabs if enabled and more than one category exists
+            if (showCategories) {
+                this.selectedCategory = null;
+                const categories = Array.from(new Set(Object.values(this.iconData).map(
+                    icon => icon.category || this.translations.other || 'Other'
+                )));
+
+                if (categories.length > 1)
+                {
+                    categories.unshift(this.translations.all || 'All');
+
+                    const tabs = document.createElement('div');
+                    tabs.className = 's2i-categories';
+
+                    // Create tab for each category
+                    categories.forEach(cat => {
+                        const tab = document.createElement('button');
+                        tab.className = 's2i-category-tab' + (this.selectedCategory === cat ? ' s2i-category-active' : '');
+                        tab.textContent = cat;
+                        tab.addEventListener('click', () => {
+                            if(cat === (this.translations.all || 'All')) {
+                                this.selectedCategory = null;
+                            } else {
+                                this.selectedCategory = (this.selectedCategory === cat) ? null : cat;
+                            }
+                            this._filterIcons(searchInput?.value.trim().toLowerCase());
+                            Array.from(tabs.children).forEach(btn => btn.classList.toggle('s2i-category-active', btn === tab));
+                        });
+                        tabs.appendChild(tab);
+                    });
+                    header.appendChild(tabs);
+                }
             }
 
             container.appendChild(header);
@@ -471,13 +515,17 @@
                 const label = (data?.label || '').toString().toLowerCase();
                 const className = (data?.class || '').toString().toLowerCase();
                 const terms = (data?.search?.terms || []).map(t => t.toLowerCase());
-
-                const match = key.includes(query) ||
+                const category = (data?.category || 'Other');
+                // Match by search
+                const matchSearch =
+                    key.includes(query) ||
                     label.includes(query) ||
                     className.includes(query) ||
                     terms.some(term => term.includes(query));
-
-                icon.style.display = match ? '' : 'none';
+                // Match by category (if selected)
+                const matchCategory = !this.selectedCategory || category === this.selectedCategory;
+                // Show only if both match
+                icon.style.display = (matchSearch && matchCategory) ? '' : 'none';
             });
 
             const visibleIcons = Array.from(this.popup.querySelectorAll('.s2i-icon'))
@@ -627,6 +675,14 @@
          */
         openPopup() {
             this._openPopup();
+        }
+
+        /**
+         * Closes the icon picker popup programmatically
+         * Example: document.querySelector('#myInput').select2icon.closePopup()
+         */
+        closePopup() {
+            this._closePopup();
         }
 
         /**

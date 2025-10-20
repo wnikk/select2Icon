@@ -1,6 +1,6 @@
 /**
  * select2icon - A versatile icon picker component
- * Version: 1.0.2
+ * Version: 1.2.0
  * Source: https://github.com/wnikk/select2Icon
  *
  * License: MIT
@@ -92,6 +92,38 @@
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+/* Category tabs */
+.s2i-categories {
+    margin-top: 8px;
+    margin-bottom: -12px;
+    display: flex;
+    gap: 6px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: 22px;
+    font-size: 12px;
+    scrollbar-width: none; /* Firefox */
+}
+.s2i-categories::-webkit-scrollbar {
+    background: transparent; /* Chrome/Safari/Webkit */
+    width: 0px;
+}
+
+.s2i-category-tab {
+    background: #f3f3f3;
+    border: none;
+    padding: 0 8px;
+    border-radius: 8px 8px 0 0;
+    cursor: pointer;
+    transition: background 0.2s;
+    flex: 0 0 auto;
+}
+.s2i-category-active {
+    background: #007bff;
+    color: #fff;
+}
+
 
 /* Icon grid scrollable */
 .s2i-grid {
